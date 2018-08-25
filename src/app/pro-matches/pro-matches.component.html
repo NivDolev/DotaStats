@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col" (click)="onSortBySide('match_id')">#</th>
+        <th scope="col" (click)="onSortBySide('radiant_name')">Radiant
+          <span class="float-right">^</span></th>
+        <th scope="col" (click)="onSortBySide('dire_name')">Dire
+            <span class="float-right">^</span></th>
+        <th scope="col" (click)="onSortBySide('duration')">Duration</th>
+        <th scope="col" (click)="onSortBySide('radiant_win')">Winner
+            <span class="float-right">^</span></th>
+        <th scope="col" (click)="onSortBySide('league_name')">League</th>
+      </tr>
+      <tr>
+          <th scope="col"><input [(ngModel)]="_match_id" (ngModelChange)="onKeyChangeFilter()"></th>
+          <th scope="col"><input type="text"></th>
+          <th scope="col"><input type="text"></th>
+          <th scope="col"><input type="number"></th>
+          <th scope="col"><input type="text"></th>
+          <th scope="col"><input type="text"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let match of fillteredMatches">
+        <th scope="row">{{ match.match_id != 0 ? match.match_id : '------' }}</th>
+        <td>{{ match.radiant_name }}</td>
+        <td>{{ match.dire_name }}</td>
+        <td>{{ match.duration }}</td>
+        <td>{{ match.radiant_win ? 'Radiant' : 'Dire' }}</td>
+        <td>{{ match.league_name }}</td>
+      </tr>
+    </tbody>
+  </table>
