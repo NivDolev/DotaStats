@@ -1,3 +1,7 @@
 li.active {
     background-color: lightblue;
 }
+
+nav {
+    margin-bottom: 15px;
+}

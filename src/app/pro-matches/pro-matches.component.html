@@ -1,18 +1,13 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col" (click)="onSortBySide('match_id')">#</th>
-        <th scope="col" (click)="onSortBySide('radiant_name')">Radiant
-          <span class="float-right">^</span></th>
-        <th scope="col" (click)="onSortBySide('dire_name')">Dire
-            <span class="float-right">^</span></th>
-        <th scope="col" (click)="onSortBySide('duration')">Duration</th>
-        <th scope="col" (click)="onSortBySide('radiant_win')">Winner
-            <span class="float-right">^</span></th>
-        <th scope="col" (click)="onSortBySide('league_name')">League</th>
+        <th *ngFor="let header of tableHeaders" scope="col" 
+        (click)="onSortBySide(header.field)">{{header.text}}</th>
       </tr>
       <tr>
-          <th scope="col"><input [(ngModel)]="_match_id" (ngModelChange)="onKeyChangeFilter()"></th>
+          <th scope="col"><input [(ngModel)]="_match_id" 
+            (ngModelChange)="onKeyChangeFilter()">
+            <span (click)="clearIdFilter()"> X</span></th>
           <th scope="col"><input type="text"></th>
           <th scope="col"><input type="text"></th>
           <th scope="col"><input type="number"></th>

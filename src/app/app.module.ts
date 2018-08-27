@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { ItemsComponent } from './items/items.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { TeamsComponent } from './teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     HomeComponent,
     HeroesComponent,
     ItemsComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,

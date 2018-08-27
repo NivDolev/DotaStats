@@ -1,0 +1,15 @@
+ul.nav {
+    margin-bottom: 15px;
+}
+
+ul li {
+    margin: 5px;
+}
+
+div.heroCard {
+    margin-bottom: 10px;
+}
+
+p.card-text {
+    height: 40px;
+}

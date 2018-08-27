@@ -1,3 +1,4 @@
+import { TeamsComponent } from './../teams/teams.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'pro-players', component: ProPlayersComponent },
     { path: 'matches', component: MatchesComponent },
     { path: 'pro-matches', component: ProMatchesComponent },
+    { path: 'teams', component: TeamsComponent },
     { path: 'heroes', component: HeroesComponent },
     { path: 'items', component: ItemsComponent }
 ];
