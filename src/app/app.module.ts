@@ -16,6 +16,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { ItemsComponent } from './items/items.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { TeamsComponent } from './teams/teams.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TeamsComponent } from './teams/teams.component';
     HeroesComponent,
     ItemsComponent,
     SearchResultsComponent,
-    TeamsComponent
+    TeamsComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

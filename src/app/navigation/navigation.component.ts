@@ -15,7 +15,8 @@ export class NavigationComponent implements OnInit {
     {route: 'pro-players', text: 'Pro Players'},
     {route: 'teams', text: 'Teams'},
     {route: 'heroes', text: 'Heroes'},
-    {route: 'items', text: 'Items'}
+    {route: 'items', text: 'Items'},
+    {route: 'statistics', text: 'Statistics'}
   ];
   constructor() { }
 
