@@ -1,17 +1,11 @@
 <form class="col-3">
   <div class="form-group">
-    <label for="leagueName">Leagues:</label>
-    <input type="text" class="form-control" id="leagueName"
-    (focus)="onFocusLeagueName()" (focusout)="onFocusOutLeagueName()"
-    #leagueName (ngModelChange)="onNameChange(leagueName.value)"
-    [(ngModel)]="userLeagueName" ngModel name="userLeagueName">
-    <div id="leagues" *ngIf="onLeagueName" style="margin-left: 20px;">
-      <span class="row" 
-      *ngFor="let league of filteredLeagues"
-      (mouseover)="onSelectLeague(league.leagueid)"
-      [class.selected]="league.leagueid == selectedLeagueId"
-      (click)="onLeagueChange(league.name)"
-      >{{league.name}}</span>
-    </div>
+    <label for="">Choose League:</label>
+    <input type="text" class="form-control" list="dotaLeagues" 
+    [(ngModel)]="inputLeagueName" ngModel name="inputLeagueName"
+      (focusout)="onFocusOutLeagueName()">
+    <datalist id="dotaLeagues">
+      <option *ngFor="let league of leagues" [value]="league.name">{{league.leagueid}}</option>
+    </datalist>
   </div>
 </form>

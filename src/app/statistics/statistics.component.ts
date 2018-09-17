@@ -11,9 +11,7 @@ export class StatisticsComponent implements OnInit {
   leagues: any[] = [];
   filteredLeagues: any[] = [];
   onLeagueName = false;
-  userLeagueName = '';
-  selectedLeagueId: number;
-  selectedLeague: any;
+  inputLeagueName = '';
 
   constructor(private dataService: DataService) { }
 
@@ -34,25 +32,8 @@ export class StatisticsComponent implements OnInit {
     });
   }
 
-  onFocusLeagueName() {
-    this.onLeagueName = true;
-  }
-
   onFocusOutLeagueName() {
-    setTimeout(() => this.onLeagueName = false, 100);
-  }
-
-  onNameChange(name: string) {
-    this.filteredLeagues = this.leagues.filter(league =>
-    league.name.startsWith(name));
-  }
-
-  onSelectLeague(id: number) {
-    this.selectedLeagueId = id;
-  }
-
-  onLeagueChange(name: string) {
-    this.userLeagueName = name;
+    console.log(this.inputLeagueName);
   }
 
   dynamicSort(property) {
