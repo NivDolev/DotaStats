@@ -1,6 +1,17 @@
-<div class="form-group col-3">
-  <label for="League">Choose League:</label>
-  <select class="form-control" id="League">
-    <option></option>
-  </select>
-</div>
+<form class="col-3">
+  <div class="form-group">
+    <label for="leagueName">Leagues:</label>
+    <input type="text" class="form-control" id="leagueName"
+    (focus)="onFocusLeagueName()" (focusout)="onFocusOutLeagueName()"
+    #leagueName (ngModelChange)="onNameChange(leagueName.value)"
+    [(ngModel)]="userLeagueName" ngModel name="userLeagueName">
+    <div id="leagues" *ngIf="onLeagueName" style="margin-left: 20px;">
+      <span class="row" 
+      *ngFor="let league of filteredLeagues"
+      (mouseover)="onSelectLeague(league.leagueid)"
+      [class.selected]="league.leagueid == selectedLeagueId"
+      (click)="onLeagueChange(league.name)"
+      >{{league.name}}</span>
+    </div>
+  </div>
+</form>
