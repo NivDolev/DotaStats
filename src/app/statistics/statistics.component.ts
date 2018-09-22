@@ -56,8 +56,6 @@ export class StatisticsComponent implements OnInit {
   }
 
   getHeroPickes() {
-    // change and creat an array of objects that contains the hero picks per team + the winnin team
-    let ind = 0;
     const matchPicks: any[] = [];
     this.selectedLeague.rows.forEach(match => {
       const matchDeatils = {
@@ -67,13 +65,8 @@ export class StatisticsComponent implements OnInit {
       matchDeatils.picks = match.picks_bans.filter(pick => pick.is_pick === true).sort(this.dynamicSort('team'));
       matchDeatils.winner = match.radiant_win;
       matchPicks.push(matchDeatils);
-      if (ind < 6) {
-      console.log(match);
-    }
-      ind++;
     });
     console.log(matchPicks);
-
   }
 
   dynamicSort(property) {
