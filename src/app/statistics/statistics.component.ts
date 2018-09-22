@@ -38,8 +38,12 @@ export class StatisticsComponent implements OnInit {
   }
 
   onFocusOutLeagueName() {
-    this.getLeagueIdByName();
-    this.getMatchesForSelectedLeague();
+    if (this.inputLeagueName !== '') {
+      this.getLeagueIdByName();
+      this.getMatchesForSelectedLeague();
+    } else {
+      console.log('choose league');
+    }
   }
 
   getLeagueIdByName() {
@@ -52,19 +56,27 @@ export class StatisticsComponent implements OnInit {
     this.dataService.getData(sqlQuery).subscribe(matches => {
       this.selectedLeague = matches;
       this.getHeroPickes();
+      // console.log(matches);
     });
   }
 
   getHeroPickes() {
     const matchPicks: any[] = [];
     this.selectedLeague.rows.forEach(match => {
-      const matchDeatils = {
+      const radiant: MatchDetails = {
         picks: [],
         winner: false
       };
-      matchDeatils.picks = match.picks_bans.filter(pick => pick.is_pick === true).sort(this.dynamicSort('team'));
-      matchDeatils.winner = match.radiant_win;
-      matchPicks.push(matchDeatils);
+      const dire: MatchDetails = {
+        picks: [],
+        winner: false
+      };
+      radiant.picks = match.picks_bans.filter(pick => pick.is_pick === true && pick.team === 1).sort(this.dynamicSort('hero_id'));
+      radiant.winner = match.radiant_win ? true : false;
+      dire.picks = match.picks_bans.filter(pick => pick.is_pick === true && pick.team === 1).sort(this.dynamicSort('hero_id'));
+      dire.winner = match.radiant_win ? true : false;
+      matchPicks.push(radiant);
+      matchPicks.push(dire);
     });
     console.log(matchPicks);
   }
@@ -81,5 +93,9 @@ export class StatisticsComponent implements OnInit {
     };
   }
 
+}
 
+class MatchDetails {
+  picks: any[];
+  winner: boolean;
 }
