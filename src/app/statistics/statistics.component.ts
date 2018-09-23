@@ -38,6 +38,7 @@ export class StatisticsComponent implements OnInit {
   }
 
   onFocusOutLeagueName() {
+    console.clear();
     if (this.inputLeagueName !== '') {
       this.getLeagueIdByName();
       this.getMatchesForSelectedLeague();
@@ -55,8 +56,8 @@ export class StatisticsComponent implements OnInit {
     const sqlQuery = encodeURI(`explorer?sql=select * from matches where leagueid=${this.selectedLeague.leagueid}`);
     this.dataService.getData(sqlQuery).subscribe(matches => {
       this.selectedLeague = matches;
+      console.log(matches);
       this.getHeroPickes();
-      // console.log(matches);
     });
   }
 
@@ -79,6 +80,16 @@ export class StatisticsComponent implements OnInit {
       matchPicks.push(dire);
     });
     console.log(matchPicks);
+  }
+
+  getHeroCombinations(picks: any[]) {
+    const combinations: {} = {
+      wins: {},
+      losses: {}
+    };
+    picks.forEach(pick => {
+
+    });
   }
 
   dynamicSort(property) {
