@@ -21,7 +21,7 @@
                 <h5 class="card-title">{{hero.localized_name}}</h5>
             </div>
             <div class="col-3">
-                <i class="d2mh" [ngClass]="hero.localized_name.replace(' ','_').toLowerCase()"></i>
+                <i class="d2mh" [ngClass]="hero.localized_name | lowercase | replace "></i>
             </div>    
           </div>
           <p class="card-text">
