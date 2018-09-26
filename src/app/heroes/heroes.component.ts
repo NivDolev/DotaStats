@@ -1,6 +1,6 @@
 import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { ResolvedStaticSymbol } from '@angular/compiler';
+import { Hero } from './hero.model';
 
 @Component({
   selector: 'app-heroes',
@@ -8,8 +8,8 @@ import { ResolvedStaticSymbol } from '@angular/compiler';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  private heroes = [];
-  filteredHeroes = [];
+  private heroes: Hero[] = [];
+  filteredHeroes: Hero[] = [];
   heroRoles: string[] = [];
   selectedRoles: string[] = [];
   loading = true;
@@ -64,4 +64,5 @@ export class HeroesComponent implements OnInit {
     this.selectedRoles = [];
     this.filteredHeroes = this.heroes;
   }
+
 }

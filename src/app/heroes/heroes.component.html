@@ -16,7 +16,14 @@
     <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{hero.localized_name}}</h5>
+          <div class="row">     
+            <div class="col-9">
+                <h5 class="card-title">{{hero.localized_name}}</h5>
+            </div>
+            <div class="col-3">
+                <i class="d2mh" [ngClass]="hero.localized_name.replace(' ','_').toLowerCase()"></i>
+            </div>    
+          </div>
           <p class="card-text">
             <span *ngFor="let role of hero.roles">{{role}} </span>
           </p>
