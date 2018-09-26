@@ -19,7 +19,7 @@ export class HeroesComponent implements OnInit {
     this.dataService.getData('heroes').subscribe(heroes => {
       this.loading = false;
       this.heroes = heroes;
-      this.filteredHeroes = this.heroes;
+      this.filteredHeroes = this.heroes.sort(this.dynamicSort('localized_name'));
       this.getHeroRoles();
     });
   }
@@ -63,6 +63,18 @@ export class HeroesComponent implements OnInit {
   clearFilters() {
     this.selectedRoles = [];
     this.filteredHeroes = this.heroes;
+  }
+
+  dynamicSort(property) {
+    let sortOrder = 1;
+    if (property[0] === '-') {
+      sortOrder = -1;
+      property = property.substr(1);
+    }
+    return function (a, b) {
+      const result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
+    };
   }
 
 }
