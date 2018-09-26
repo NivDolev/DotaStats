@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
-export class TeamsComponent implements OnInit, OnDestroy {
+export class TeamsComponent implements OnInit {
   loading = true;
   teams = [];
   filteredTeams = [];
@@ -17,12 +17,14 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.dataService.getData('teams').subscribe(teams => {
       this.loading = false;
       this.teams = teams;
-      this.filteredTeams = teams.sort((a,b) => { 
-        if (a.rating > b.rating) return -1; else if (b.rating > a.rating) return 1; else return 0;
+      this.filteredTeams = teams.sort((a, b) => {
+        if (a.rating > b.rating) {
+          return -1;
+        } else if (b.rating > a.rating) {
+            return 1;
+          } else { return 0; }
       });
     });
   }
 
-  ngOnDestroy() {
-  }
 }
