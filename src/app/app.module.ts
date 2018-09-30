@@ -21,6 +21,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { TeamsComponent } from './teams/teams.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ReplaceWhiteSpace } from './custome-pipes/replace.pipe';
+import { ContainsFilter } from './custome-pipes/contains.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ReplaceWhiteSpace } from './custome-pipes/replace.pipe';
     SearchResultsComponent,
     TeamsComponent,
     StatisticsComponent,
-    ReplaceWhiteSpace
+    ReplaceWhiteSpace,
+    ContainsFilter
   ],
   imports: [
     BrowserModule,

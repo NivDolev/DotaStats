@@ -2,10 +2,14 @@
   <h3>loading</h3>
 </div>
 <div *ngIf="!loading">
+  <div class="col">
+    <input type="text" id="heroFilter" [(ngModel)]="heroFilter">
+  </div>
   <div class="row justify-content-center">
     <ul class="nav">
       <li class="nav-item" *ngFor="let role of heroRoles" (click)="selectFilter(role)" (click)="filterHeroesByRole()">
-        <button type="button" class="btn btn-outline-primary" [class.btn-primary]="selectedRoles.includes(role)" [class.btn-outline-primary]="!selectedRoles.includes(role)">{{role}}</button>
+        <button type="button" class="btn btn-outline-primary" [class.btn-primary]="selectedRoles.includes(role)"
+          [class.btn-outline-primary]="!selectedRoles.includes(role)">{{role}}</button>
       </li>
       <li class="nav-item">
         <button class="btn btn-primary" (click)="clearFilters()">Clear</button>
@@ -13,16 +17,16 @@
     </ul>
   </div>
   <div class="row">
-    <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes">
+    <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes | contains: heroFilter :'localized_name' ">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <div class="row">     
+          <div class="row">
             <div class="col-9">
-                <h5 class="card-title">{{hero.localized_name}}</h5>
+              <h5 class="card-title">{{hero.localized_name}}</h5>
             </div>
             <div class="col-3">
-                <i class="d2mh" [ngClass]="hero.localized_name | lowercase | replace "></i>
-            </div>    
+              <i class="d2mh" [ngClass]="hero.localized_name | lowercase | replace "></i>
+            </div>
           </div>
           <p class="card-text">
             <span *ngFor="let role of hero.roles">{{role}} </span>

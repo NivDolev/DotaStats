@@ -13,6 +13,7 @@ export class HeroesComponent implements OnInit {
   heroRoles: string[] = [];
   selectedRoles: string[] = [];
   loading = true;
+  heroFilter: string = '';
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
