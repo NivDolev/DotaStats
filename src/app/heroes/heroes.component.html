@@ -4,38 +4,39 @@
 <div *ngIf="!loading">
   <div class="row">
     <div class="col-2">
-        <input type="text"  class="form-control" id="heroFilter" [(ngModel)]="heroFilter">
+      <input type="text" class="form-control" id="heroFilter" [(ngModel)]="heroFilter" placeholder="Hero search...">
+      <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action" 
+          *ngFor="let role of heroRoles" [class.active]="selectedRoles.includes(role)"
+          (click)="selectFilter(role)" (click)="filterHeroesByRole()">{{role}}
+          <span class="badge badge-primary badge-pill"></span>
+        </button>
+          <hr>
+          <button class="btn btn-primary" (click)="clearFilters()">Clear</button>
+        </div>
     </div>
     <div class="col-10">
-        <ul class="nav">
-            <li class="nav-item" *ngFor="let role of heroRoles" (click)="selectFilter(role)" (click)="filterHeroesByRole()">
-              <button type="button" class="btn btn-outline-primary" [class.btn-primary]="selectedRoles.includes(role)"
-                [class.btn-outline-primary]="!selectedRoles.includes(role)">{{role}}</button>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-primary" (click)="clearFilters()">Clear</button>
-            </li>
-          </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes | contains: heroFilter :'localized_name' ">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-9">
-              <h5 class="card-title">{{hero.localized_name}}</h5>
-            </div>
-            <div class="col-3">
-              <i class="d2mh" [ngClass]="hero.localized_name | lowercase | replace "></i>
+      <div class="row">
+        <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes | contains: heroFilter :'localized_name' ">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <h5 class="card-title">{{hero.localized_name}}</h5>
+                </div>
+                <div class="col-3">
+                  <i class="d2mh" [ngClass]="hero.localized_name | lowercase | replace "></i>
+                </div>
+              </div>
+              <p class="card-text">
+                <span *ngFor="let role of hero.roles">{{role}} </span>
+              </p>
+              <a routerLink="heroes/{{hero.id}}" class="btn btn-primary">Details</a>
             </div>
           </div>
-          <p class="card-text">
-            <span *ngFor="let role of hero.roles">{{role}} </span>
-          </p>
-          <a href="#" class="btn btn-primary">Details</a>
         </div>
       </div>
     </div>
   </div>
+
 </div>

@@ -7,8 +7,8 @@ ul li {
 }
 
 input {
-    margin: 5px;
     border-color: lightblue;
+    margin-bottom: 10px;
 }
 
 div.heroCard {
@@ -17,6 +17,10 @@ div.heroCard {
 
 p.card-text {
     height: 40px;
+}
+
+card {
+    margin: 10px;    
 }
 
 .d2mh {

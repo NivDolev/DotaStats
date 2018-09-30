@@ -13,7 +13,7 @@ export class HeroesComponent implements OnInit {
   heroRoles: string[] = [];
   selectedRoles: string[] = [];
   loading = true;
-  heroFilter: string = '';
+  heroFilter = '';
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
@@ -63,6 +63,7 @@ export class HeroesComponent implements OnInit {
 
   clearFilters() {
     this.selectedRoles = [];
+    this.heroFilter = '';
     this.filteredHeroes = this.heroes;
   }
 
