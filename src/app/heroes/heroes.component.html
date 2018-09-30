@@ -4,6 +4,8 @@
 <div *ngIf="!loading">
   <div class="row">
     <div class="col-2">
+      <h3 class="text-center">{{filteredHeroes.length}} / {{heroes.length}}</h3>
+      <hr>
       <input type="text" class="form-control" id="heroFilter" [(ngModel)]="heroFilter" placeholder="Hero search...">
       <div class="list-group">
           <button type="button" class="list-group-item list-group-item-action" 

@@ -8,7 +8,7 @@ import { Hero } from './hero.model';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  private heroes: Hero[] = [];
+  heroes: Hero[] = [];
   filteredHeroes: Hero[] = [];
   heroRoles: string[] = [];
   selectedRoles: string[] = [];
