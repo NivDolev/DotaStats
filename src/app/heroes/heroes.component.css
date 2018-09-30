@@ -6,6 +6,11 @@ ul li {
     margin: 5px;
 }
 
+input {
+    margin: 5px;
+    border-color: lightblue;
+}
+
 div.heroCard {
     margin-bottom: 10px;
 }
