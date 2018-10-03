@@ -1,11 +1,20 @@
 <form class="col-3">
   <div class="form-group">
+    <label for="">Choose Tier:</label>
+    <input type="text" class="form-control" list="leagueTiers" 
+    [(ngModel)]="inputLeagueTier" ngModel name="inputLeagueTier"
+    (focusout)="onTierSelection()">
+    <datalist id="leagueTiers">
+      <option *ngFor="let tier of tiers" [value]="tier | titlecase">
+        <span class="badge badge-info">({{tierValues[tier]}})</span>
+      </option>
+    </datalist>
     <label for="">Choose League:</label>
     <input type="text" class="form-control" list="dotaLeagues" 
     [(ngModel)]="inputLeagueName" ngModel name="inputLeagueName"
-      (focusout)="onFocusOutLeagueName()">
+    (focusout)="onLeagueSelection()" (ngOnChange)="getLeagueIdByName()">
     <datalist id="dotaLeagues">
-      <option *ngFor="let league of leagues" [value]="league.name">{{league.leagueid}}</option>
+      <option *ngFor="let league of filteredLeagues" [value]="league.name">{{league.leagueid}}</option>
     </datalist>
   </div>
 </form>
