@@ -22,6 +22,7 @@ import { TeamsComponent } from './teams/teams.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ReplaceWhiteSpace } from './custome-pipes/replace.pipe';
 import { ContainsFilter } from './custome-pipes/contains.pipe';
+import { HeroDetailsComponent } from './heroes/hero-details/hero-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ContainsFilter } from './custome-pipes/contains.pipe';
     TeamsComponent,
     StatisticsComponent,
     ReplaceWhiteSpace,
-    ContainsFilter
+    ContainsFilter,
+    HeroDetailsComponent
   ],
   imports: [
     BrowserModule,

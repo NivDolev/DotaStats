@@ -1,3 +1,4 @@
+import { HeroDetailsComponent } from './../heroes/hero-details/hero-details.component';
 import { StatisticsComponent } from './../statistics/statistics.component';
 import { TeamsComponent } from './../teams/teams.component';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,10 @@ const routes: Routes = [
     { path: 'matches', component: MatchesComponent },
     { path: 'pro-matches', component: ProMatchesComponent },
     { path: 'teams', component: TeamsComponent },
-    { path: 'heroes', component: HeroesComponent },
+    { path: 'heroes', children: [
+        { path: ':id', component: HeroDetailsComponent },
+        { path: '', component: HeroesComponent }
+    ] },
     { path: 'items', component: ItemsComponent },
     { path: 'statistics', component: StatisticsComponent}
 ];
