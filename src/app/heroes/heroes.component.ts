@@ -37,6 +37,9 @@ export class HeroesComponent implements OnInit {
     this.filteredHeroes = this.heroes.filter(hero => {
       let match = true;
       let i = 0;
+      if (!hero.localized_name.toLowerCase().includes(this.heroFilter.toLowerCase())) {
+        match = false;
+      }
       while (match && i < this.selectedRoles.length) {
         if (!hero.roles.includes(this.selectedRoles[i])) {
           match = false;
@@ -58,7 +61,6 @@ export class HeroesComponent implements OnInit {
       });
       this.heroRoles = allRoles;
     });
-    console.log(allRoles);
   }
 
   clearFilters() {

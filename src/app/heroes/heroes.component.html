@@ -6,7 +6,8 @@
     <div class="col-2">
       <h3 class="text-center">{{filteredHeroes.length}} / {{heroes.length}}</h3>
       <hr>
-      <input type="text" class="form-control" id="heroFilter" [(ngModel)]="heroFilter" placeholder="Hero search...">
+      <input type="text" class="form-control" id="heroFilter" [(ngModel)]="heroFilter" placeholder="Hero search..."
+      (keyup)="filterHeroesByRole()">
       <div class="list-group">
           <button type="button" class="list-group-item list-group-item-action" 
           *ngFor="let role of heroRoles" [class.active]="selectedRoles.includes(role)"
@@ -19,7 +20,7 @@
     </div>
     <div class="col-10">
       <div class="row">
-        <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes | contains: heroFilter :'localized_name' ">
+        <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <div class="row">
