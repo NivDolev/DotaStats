@@ -110,8 +110,8 @@ export class StatisticsComponent implements OnInit {
             dire.picks.push(pick.hero_id);
           }
         });
-        // radiant.picks = this.getHeroCombinations(radiant.picks, 2);
-        // dire.picks = this.getHeroCombinations(dire.picks, 2);
+        radiant.picks = this.getHeroCombinations(radiant.picks, 3);
+        dire.picks = this.getHeroCombinations(dire.picks, 3);
         // Determines winner
         if (match.radint_win) {
           radiant.winner = true;
@@ -122,30 +122,50 @@ export class StatisticsComponent implements OnInit {
         matchPicks.push(dire);
       }
     });
-    this.getHeroCombinations(matchPicks[0].picks, 2);
+    console.log(matchPicks);
   }
 
-  getHeroCombinations (picks: any[], num: number): any[] {
-    let combinations: any[] = [];
-    if (num === 1) {
-      for (let i = 0; i < picks.length; i++) {
-        combinations.push(picks[i]);
+  // getHeroCombinations (picks: any[], num: number): any[] {
+  //   const combinations: any[] = [];
+  //   if (num === 1) {
+  //     for (let i = 0; i < picks.length; i++) {
+  //       combinations.push(picks[i]);
+  //     }
+  //   } else {
+  //     const heroes = picks.slice();
+  //     console.log(`Heroes: ${heroes}`);
+  //     while (heroes.length > num - 1) {
+  //       const heroId = heroes.shift();
+  //       console.log(`Hero Id: ${heroId}`);
+  //       const comb: any[] = this.getHeroCombinations(heroes, num - 1);
+  //       console.log(`Combinations: ${comb}`);
+  //       for (let i = 0; i < comb.length; i++) {
+  //         comb[i].unshift(heroId);
+  //         combinations.push(comb[i]);
+  //       }
+  //     }
+  //   }
+  //   console.log(combinations);
+  //   return combinations;
+  // }
+
+  getHeroCombinations(arr: any[], n: number): any[] {
+    const combinations = [];
+    if (n === 1) {
+      for (let i = 0; i < arr.length; i++) {
+        combinations.push([arr[i]]);
       }
     } else {
-      let heroes = picks.slice();
-      console.log(`Heroes: ${heroes}`);
-      while (heroes.length > num - 1) {
-        let heroId = heroes.shift();
-        console.log(`Hero Id: ${heroId}`);
-        let comb: any[] = this.getHeroCombinations(heroes, num - 1);
-        console.log(`Combinations: ${comb}`);
+      const heroes = arr.slice();
+      while (heroes.length > n - 1) {
+        const heroId = heroes.shift();
+        const comb = this.getHeroCombinations(heroes, n - 1);
         for (let i = 0; i < comb.length; i++) {
           comb[i].unshift(heroId);
           combinations.push(comb[i]);
         }
       }
     }
-    console.log(combinations);
     return combinations;
   }
 
