@@ -25,6 +25,7 @@ export class StatisticsComponent implements OnInit {
   };
   selectedLeague: any;
   leagueMatches: any[] = [];
+  tuplesMap: {} = {};
 
   constructor(private dataService: DataService) { }
 
@@ -87,15 +88,15 @@ export class StatisticsComponent implements OnInit {
   }
 
   getHeroPickes() {
-    const matchPicks: any[] = [];
+    const matchPicks: MatchDetails[] = [];
     this.leagueMatches.forEach(match => {
       const radiant: MatchDetails = {
-        picks: [],
+        tuples: [],
         winner: false,
         side: 'radiant'
       };
       const dire: MatchDetails = {
-        picks: [],
+        tuples: [],
         winner: false,
         side: 'dire'
       };
@@ -105,13 +106,13 @@ export class StatisticsComponent implements OnInit {
         // Extract hero id picks per team
         picks.forEach(pick => {
           if (pick.team === 0) {
-            radiant.picks.push(pick.hero_id);
+            radiant.tuples.push(pick.hero_id);
           } else {
-            dire.picks.push(pick.hero_id);
+            dire.tuples.push(pick.hero_id);
           }
         });
-        radiant.picks = this.getHeroCombinations(radiant.picks, 3);
-        dire.picks = this.getHeroCombinations(dire.picks, 3);
+        radiant.tuples = this.getHeroCombinations(radiant.tuples, 3);
+        dire.tuples = this.getHeroCombinations(dire.tuples, 3);
         // Determines winner
         if (match.radint_win) {
           radiant.winner = true;
@@ -123,40 +124,24 @@ export class StatisticsComponent implements OnInit {
       }
     });
     console.log(matchPicks);
+    // let mockMatches: MatchDetails = [
+    //   {
+    //     tuples: [1, 2, 3]
+    //   }
+    // ]
+    this.buildTuplesMap(matchPicks);
+    console.log(this.tuplesMap);
+    console.log(Object.keys(this.tuplesMap).length);
   }
 
-  // getHeroCombinations (picks: any[], num: number): any[] {
-  //   const combinations: any[] = [];
-  //   if (num === 1) {
-  //     for (let i = 0; i < picks.length; i++) {
-  //       combinations.push(picks[i]);
-  //     }
-  //   } else {
-  //     const heroes = picks.slice();
-  //     console.log(`Heroes: ${heroes}`);
-  //     while (heroes.length > num - 1) {
-  //       const heroId = heroes.shift();
-  //       console.log(`Hero Id: ${heroId}`);
-  //       const comb: any[] = this.getHeroCombinations(heroes, num - 1);
-  //       console.log(`Combinations: ${comb}`);
-  //       for (let i = 0; i < comb.length; i++) {
-  //         comb[i].unshift(heroId);
-  //         combinations.push(comb[i]);
-  //       }
-  //     }
-  //   }
-  //   console.log(combinations);
-  //   return combinations;
-  // }
-
-  getHeroCombinations(arr: any[], n: number): any[] {
+  getHeroCombinations(picks: any[], n: number): any[] {
     const combinations = [];
     if (n === 1) {
-      for (let i = 0; i < arr.length; i++) {
-        combinations.push([arr[i]]);
+      for (let i = 0; i < picks.length; i++) {
+        combinations.push([picks[i]]);
       }
     } else {
-      const heroes = arr.slice();
+      const heroes = picks.slice();
       while (heroes.length > n - 1) {
         const heroId = heroes.shift();
         const comb = this.getHeroCombinations(heroes, n - 1);
@@ -167,6 +152,36 @@ export class StatisticsComponent implements OnInit {
       }
     }
     return combinations;
+  }
+
+  buildTuplesMap(plays: MatchDetails[]): void {
+    plays.forEach(play => {
+      const tuples: any[] = play.tuples;
+      tuples.forEach(tuple => {
+        const id = this.parseTupleId(tuple);
+        if (this.tuplesMap[id] !== null) {
+          this.tuplesMap[id] = {
+            tuple: tuple,
+            wins: (play.winner ? 1 : 0),
+            loses: (play.winner ? 0 : 1)
+          };
+        } else {
+          if (play.winner) {
+            this.tuplesMap[id].wins++;
+          } else {
+            this.tuplesMap[id].loses++;
+          }
+        }
+      });
+    });
+  }
+
+  parseTupleId(tuple: number[]): string {
+    let id = '';
+    for (let i = 0; i < tuple.length; i++) {
+      id += `${tuple[i].toString()}_`;
+    }
+    return id;
   }
 
   dynamicSort(property) {
@@ -189,7 +204,7 @@ export class StatisticsComponent implements OnInit {
 }
 
 class MatchDetails {
-  picks: any[];
+  tuples: any[];
   winner: boolean;
   side: string;
 }
