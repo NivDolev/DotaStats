@@ -38,4 +38,8 @@
             </li>      </ul>
     </div>
   </div>
+  <div class="container" *ngIf="!haveData && haveData !== null && inputLeagueName !== ''">
+    <h3>Sorry, no match information found for this league</h3>
+    <h4>Please selecet a different league</h4>
+  </div>
 </form>

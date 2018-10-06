@@ -33,6 +33,7 @@ export class StatisticsComponent implements OnInit {
     worstTuple: []
   };
   heroes: Hero[] = [];
+  haveData = null;
 
   constructor(private dataService: DataService) { }
 
@@ -71,6 +72,13 @@ export class StatisticsComponent implements OnInit {
     // get matches for selected league
     console.clear();
     this.tuplesMap = {};
+    this.tupleResults = {
+      maxWins: 0,
+      bestTuple: [],
+      maxLoses: 0,
+      worstTuple: []
+    };
+    this.haveData = null;
     if (this.inputLeagueName !== '') {
       this.getLeagueIdByName();
     } else {
@@ -86,8 +94,6 @@ export class StatisticsComponent implements OnInit {
   }
 
   getMatchesForSelectedLeague() {
-    // Remove and uncomment after done
-    // const sqlQuery = encodeURI(`explorer?sql=select * from matches where leagueid=5197`);
     const sqlQuery = encodeURI(`explorer?sql=select * from matches where leagueid=${this.selectedLeague.leagueid}`);
     this.dataService.getData(sqlQuery).subscribe(matches => {
       if (matches != null) {
@@ -133,8 +139,13 @@ export class StatisticsComponent implements OnInit {
         matchPicks.push(dire);
       }
     });
-    this.buildTuplesMap(matchPicks);
-    this.getMostPickedTuples();
+    if (matchPicks.length > 0) {
+      this.haveData = true;
+      this.buildTuplesMap(matchPicks);
+      this.getMostPickedTuples();
+    } else {
+      this.haveData = false;
+    }
   }
 
   getHeroCombinations(picks: any[], n: number): any[] {
@@ -211,7 +222,6 @@ export class StatisticsComponent implements OnInit {
       worstTuple: worstTuple
     };
     this.tupleResults = results;
-    console.log(this.tupleResults);
   }
 
   dynamicSort(property) {
