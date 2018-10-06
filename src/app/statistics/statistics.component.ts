@@ -124,14 +124,9 @@ export class StatisticsComponent implements OnInit {
       }
     });
     console.log(matchPicks);
-    // let mockMatches: MatchDetails = [
-    //   {
-    //     tuples: [1, 2, 3]
-    //   }
-    // ]
     this.buildTuplesMap(matchPicks);
     console.log(this.tuplesMap);
-    console.log(Object.keys(this.tuplesMap).length);
+    console.log(this.getMostPickedTuples());
   }
 
   getHeroCombinations(picks: any[], n: number): any[] {
@@ -159,7 +154,7 @@ export class StatisticsComponent implements OnInit {
       const tuples: any[] = play.tuples;
       tuples.forEach(tuple => {
         const id = this.parseTupleId(tuple);
-        if (this.tuplesMap[id] !== null) {
+        if (this.tuplesMap[id] === undefined) {
           this.tuplesMap[id] = {
             tuple: tuple,
             wins: (play.winner ? 1 : 0),
@@ -182,6 +177,32 @@ export class StatisticsComponent implements OnInit {
       id += `${tuple[i].toString()}_`;
     }
     return id;
+  }
+
+  getMostPickedTuples(): any {
+    const tuplesKeys: any[] = Object.keys(this.tuplesMap);
+    let maxWins = 0;
+    let maxLoses = 0;
+    let bestTuple = [];
+    let worstTuple = [];
+    tuplesKeys.forEach(key => {
+      const curTuple = this.tuplesMap[key];
+      if (curTuple.wins > maxWins) {
+        maxWins = curTuple.wins;
+        bestTuple = curTuple.tuple;
+      }
+      if (curTuple.loses > maxLoses) {
+        maxLoses = curTuple.loses;
+        worstTuple = curTuple.tuple;
+      }
+    });
+    const results = {
+      maxWins: maxWins,
+      bestTuple: bestTuple,
+      maxLoses: maxLoses,
+      worstTuple: worstTuple
+    };
+    return results;
   }
 
   dynamicSort(property) {
