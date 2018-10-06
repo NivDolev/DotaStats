@@ -25,7 +25,7 @@ card {
 }
 
 .d2mh {
-    background-image: url("./images/minimap_hero_sheet.png");
+    background-image: url("../../assets/images/minimap_hero_sheet.png");
     background-repeat: no-repeat;
     display: inline-block;
     width: 32px;

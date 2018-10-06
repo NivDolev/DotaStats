@@ -21,7 +21,10 @@
     </div>
     <div class="row">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let tuple of tupleResults['bestTuple']">{{heroes | heroName : tuple}}</li>
+        <li class="list-group-item" *ngFor="let tuple of tupleResults['bestTuple']">
+          <i class="d2mh" [ngClass]="heroes | heroName : tuple | lowercase | replace "></i>
+          {{heroes | heroName : tuple}}
+        </li>
       </ul>
     </div>
     <div class="row">
@@ -29,8 +32,10 @@
     </div>
     <div class="row">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let tuple of tupleResults['worstTuple']">{{heroes | heroName : tuple}}</li>
-      </ul>
+          <li class="list-group-item" *ngFor="let tuple of tupleResults['worstTuple']">
+              <i class="d2mh" [ngClass]="heroes | heroName : tuple | lowercase | replace "></i>
+              {{heroes | heroName : tuple}}
+            </li>      </ul>
     </div>
   </div>
 </form>
