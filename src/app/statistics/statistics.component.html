@@ -8,22 +8,30 @@
         <span class="badge badge-info">({{tierValues[tier]}})</span>
       </option>
     </datalist>
+    <hr>
     <label for="">Choose League:</label>
     <input type="text" class="form-control" list="dotaLeagues" [(ngModel)]="inputLeagueName" ngModel name="inputLeagueName"
       (focusout)="onLeagueSelection()" (ngOnChange)="getLeagueIdByName()">
     <datalist id="dotaLeagues">
       <option *ngFor="let league of filteredLeagues" [value]="league.name">{{league.leagueid}}</option>
     </datalist>
+    <hr>
+    <label for="">Chose Tople:</label>
+    <div class="slidecontainer">
+      <input type="range" min="2" max="4" value="3" class="slider" id="myRange" name="topleRange" [(ngModel)]="selectedTuple">
+    </div>
+    <p class="text-center">{{selectedTuple}}</p>
   </div>
+  <hr>
   <div class="container" *ngIf="tupleResults['maxWins'] > 0">
     <div class="row">
       <label for="">Best Tuple:</label>
     </div>
     <div class="row">
-      <ul class="list-group">
+      <ul class="list-group col-9">
         <li class="list-group-item" *ngFor="let tuple of tupleResults['bestTuple']">
           <i class="d2mh" [ngClass]="heroes | heroName : tuple | lowercase | replace "></i>
-          {{heroes | heroName : tuple}}
+          <span class="align-baseline">{{heroes | heroName : tuple}}</span>
         </li>
       </ul>
     </div>
@@ -31,7 +39,7 @@
       <label for="">Worst Tuple:</label>
     </div>
     <div class="row">
-      <ul class="list-group">
+      <ul class="list-group col-9">
           <li class="list-group-item" *ngFor="let tuple of tupleResults['worstTuple']">
               <i class="d2mh" [ngClass]="heroes | heroName : tuple | lowercase | replace "></i>
               {{heroes | heroName : tuple}}

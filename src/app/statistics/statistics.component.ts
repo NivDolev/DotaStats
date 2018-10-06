@@ -32,6 +32,7 @@ export class StatisticsComponent implements OnInit {
     maxLoses: 0,
     worstTuple: []
   };
+  selectedTuple = 3;
   heroes: Hero[] = [];
   haveData = null;
 
