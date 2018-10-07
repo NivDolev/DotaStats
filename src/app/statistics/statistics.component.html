@@ -16,9 +16,10 @@
       <option *ngFor="let league of filteredLeagues" [value]="league.name">{{league.leagueid}}</option>
     </datalist>
     <hr>
-    <label for="">Chose Tople:</label>
+    <label for="">Choose {{selectedTuple}}-Tople:</label>
     <div class="slidecontainer">
-      <input type="range" min="2" max="4" value="3" class="slider" id="myRange" name="topleRange" [(ngModel)]="selectedTuple">
+      <input type="range" min="2" max="4" value="3" class="slider" id="myRange" name="topleRange" [(ngModel)]="selectedTuple"
+      (input)="getHeroPickes()">
     </div>
     <p class="text-center">{{selectedTuple}}</p>
   </div>

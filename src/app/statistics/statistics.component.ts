@@ -40,7 +40,6 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit() {
     this.getInitialLeaguesData();
-    console.log(this.tupleResults);
   }
 
   getInitialLeaguesData() {
@@ -72,17 +71,12 @@ export class StatisticsComponent implements OnInit {
   onLeagueSelection() {
     // get matches for selected league
     console.clear();
-    this.tuplesMap = {};
-    this.tupleResults = {
-      maxWins: 0,
-      bestTuple: [],
-      maxLoses: 0,
-      worstTuple: []
-    };
+    this.clearTupleData();
     this.haveData = null;
     if (this.inputLeagueName !== '') {
       this.getLeagueIdByName();
     } else {
+      this.leagueMatches = [];
       console.log('choose league');
     }
   }
@@ -105,6 +99,8 @@ export class StatisticsComponent implements OnInit {
   }
 
   getHeroPickes() {
+    console.log('Getting Heroes Picks');
+    this.clearTupleData();
     const matchPicks: MatchDetails[] = [];
     this.leagueMatches.forEach(match => {
       const radiant: MatchDetails = {
@@ -128,8 +124,8 @@ export class StatisticsComponent implements OnInit {
             dire.tuples.push(pick.hero_id);
           }
         });
-        radiant.tuples = this.getHeroCombinations(radiant.tuples, 3);
-        dire.tuples = this.getHeroCombinations(dire.tuples, 3);
+        radiant.tuples = this.getHeroCombinations(radiant.tuples, this.selectedTuple);
+        dire.tuples = this.getHeroCombinations(dire.tuples, this.selectedTuple);
         // Determines winner
         if (match.radint_win) {
           radiant.winner = true;
@@ -223,6 +219,17 @@ export class StatisticsComponent implements OnInit {
       worstTuple: worstTuple
     };
     this.tupleResults = results;
+  }
+
+  clearTupleData(): void {
+    this.tuplesMap = {};
+    this.tupleResults = {
+      maxWins: 0,
+      bestTuple: [],
+      maxLoses: 0,
+      worstTuple: []
+    };
+    this.haveData = null;
   }
 
   dynamicSort(property) {
