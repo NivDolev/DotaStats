@@ -69,14 +69,12 @@ export class StatisticsComponent implements OnInit {
 
   onLeagueSelection() {
     // get matches for selected league
-    console.clear();
     this.clearTupleData();
     this.haveData = null;
     if (this.inputLeagueName !== '') {
       this.getLeagueIdByName();
     } else {
       this.leagueMatches = [];
-      console.log('choose league');
     }
   }
 
@@ -98,7 +96,6 @@ export class StatisticsComponent implements OnInit {
   }
 
   getHeroPickes() {
-    console.log('Getting Heroes Picks');
     this.clearTupleData();
     const matchPicks: MatchDetails[] = [];
     this.leagueMatches.forEach(match => {
