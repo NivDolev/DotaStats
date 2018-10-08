@@ -9,7 +9,6 @@ export class NavigationComponent implements OnInit {
   selectedNav = 'home';
   navigationListItems = [
     {route: 'home', text: 'Home'},
-    {route: 'pro-matches', text: 'Pro Matches'},
     {route: 'teams', text: 'Teams'},
     {route: 'heroes', text: 'Heroes'},
     {route: 'statistics', text: 'Statistics'}
