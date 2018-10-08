@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!loading">
   <div class="row">
-    <div class="col-2">
+    <div class="col-xl-2 col-lg-3 col-md-3 col">
       <h3 class="text-center">{{filteredHeroes.length}} / {{heroes.length}}</h3>
       <hr>
       <input type="text" class="form-control" id="heroFilter" [(ngModel)]="heroFilter" placeholder="Hero search..."
@@ -18,9 +18,9 @@
           <button class="btn btn-primary" (click)="clearFilters()">Clear</button>
         </div>
     </div>
-    <div class="col-10">
+    <div class="col-xl-10 col-lg-9 col-md-9 col">
       <div class="row">
-        <div class="col-2 heroCard" *ngFor="let hero of filteredHeroes">
+        <div class="col-xl-2 col-lg-5 col-md-5 col-auto heroCard" *ngFor="let hero of filteredHeroes">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <div class="row">
