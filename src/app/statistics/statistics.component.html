@@ -1,35 +1,40 @@
-<form class="col-3">
-  <div class="form-group">
-    <label for="">Choose Tier:</label>
-    <input type="text" class="form-control" list="leagueTiers" [(ngModel)]="inputLeagueTier" ngModel name="inputLeagueTier"
-      (focusout)="onTierSelection()">
-    <datalist id="leagueTiers">
-      <option *ngFor="let tier of tiers" [value]="tier | titlecase">
-        <span class="badge badge-info">({{tierValues[tier]}})</span>
-      </option>
-    </datalist>
-    <hr>
-    <label for="">Choose League:</label>
-    <input type="text" class="form-control" list="dotaLeagues" [(ngModel)]="inputLeagueName" ngModel name="inputLeagueName"
-      (focusout)="onLeagueSelection()" (ngOnChange)="getLeagueIdByName()">
-    <datalist id="dotaLeagues">
-      <option *ngFor="let league of filteredLeagues" [value]="league.name">{{league.leagueid}}</option>
-    </datalist>
-    <hr>
-    <label for="">Choose {{selectedTuple}}-Tople:</label>
-    <div class="slidecontainer">
-      <input type="range" min="2" max="4" value="3" class="slider" id="myRange" name="topleRange" [(ngModel)]="selectedTuple"
-      (input)="getHeroPickes()">
-    </div>
-    <p class="text-center">{{selectedTuple}}</p>
+<div class="container-fluid">
+  <div class="row">
+    <form class="col col-lg-3">
+      <div class="form-group">
+        <label for="">Choose Tier:</label>
+        <input type="text" class="form-control" list="leagueTiers" [(ngModel)]="inputLeagueTier" ngModel name="inputLeagueTier"
+          (focusout)="onTierSelection()">
+        <datalist id="leagueTiers">
+          <option *ngFor="let tier of tiers" [value]="tier | titlecase">
+            <span class="badge badge-info">({{tierValues[tier]}})</span>
+          </option>
+        </datalist>
+        <hr>
+        <label for="">Choose League:</label>
+        <input type="text" class="form-control" list="dotaLeagues" [(ngModel)]="inputLeagueName" ngModel name="inputLeagueName"
+          (focusout)="onLeagueSelection()" (ngOnChange)="getLeagueIdByName()">
+        <datalist id="dotaLeagues">
+          <option *ngFor="let league of filteredLeagues" [value]="league.name">{{league.leagueid}}</option>
+        </datalist>
+        <hr>
+        <label for="">Choose {{selectedTuple}}-Tople:</label>
+        <div class="slidecontainer">
+          <input type="range" min="2" max="4" value="3" class="slider" id="myRange" name="topleRange" [(ngModel)]="selectedTuple"
+            (input)="getHeroPickes()">
+        </div>
+        <p class="text-center">{{selectedTuple}}</p>
+      </div>
+      <hr>
+    </form>
   </div>
-  <hr>
-  <div class="container" *ngIf="tupleResults['maxWins'] > 0">
+
+  <div class="col col-lg-3" *ngIf="tupleResults['maxWins'] > 0">
     <div class="row">
       <label for="">Best Tuple:</label>
     </div>
     <div class="row">
-      <ul class="list-group col-9">
+      <ul class="list-group col">
         <li class="list-group-item" *ngFor="let tuple of tupleResults['bestTuple']">
           <i class="d2mh" [ngClass]="heroes | heroName : tuple | lowercase | replace "></i>
           <span class="align-baseline">{{heroes | heroName : tuple}}</span>
@@ -40,15 +45,16 @@
       <label for="">Worst Tuple:</label>
     </div>
     <div class="row">
-      <ul class="list-group col-9">
-          <li class="list-group-item" *ngFor="let tuple of tupleResults['worstTuple']">
-              <i class="d2mh" [ngClass]="heroes | heroName : tuple | lowercase | replace "></i>
-              {{heroes | heroName : tuple}}
-            </li>      </ul>
+      <ul class="list-group col">
+        <li class="list-group-item" *ngFor="let tuple of tupleResults['worstTuple']">
+          <i class="d2mh" [ngClass]="heroes | heroName : tuple | lowercase | replace "></i>
+          {{heroes | heroName : tuple}}
+        </li>
+      </ul>
     </div>
   </div>
   <div class="container" *ngIf="!haveData && haveData !== null && inputLeagueName !== ''">
     <h3>Sorry, no match information found for this league</h3>
     <h4>Please selecet a different league</h4>
   </div>
-</form>
+</div>

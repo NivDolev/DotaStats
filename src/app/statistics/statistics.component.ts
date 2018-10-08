@@ -1,4 +1,3 @@
-import { HeroPicks } from './models/heroPicks';
 import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../heroes/hero.model';
