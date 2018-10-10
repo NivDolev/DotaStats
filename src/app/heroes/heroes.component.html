@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!loading">
   <div class="row">
-    <div class="col-xl-2 col-lg-3 col-md-3 col">
+    <div class="col-xl-2 col-lg-3 col-md-3 col" id="heroesFilter">
       <h3 class="text-center">{{filteredHeroes.length}} / {{heroes.length}}</h3>
       <hr>
       <input type="text" class="form-control" id="heroFilter" [(ngModel)]="heroFilter" placeholder="Hero search..."
@@ -14,11 +14,10 @@
           (click)="selectFilter(role)" (click)="filterHeroesByRole()">{{role}}
           <span class="badge badge-primary badge-pill"></span>
         </button>
-          <hr>
-          <button class="btn btn-primary" (click)="clearFilters()">Clear</button>
+          <button class="btn btn-primary" id="clearHeroFilter" (click)="clearFilters()">Clear</button>
         </div>
     </div>
-    <div class="col-xl-10 col-lg-9 col-md-9 col">
+    <div class="col-xl-10 col-lg-9 col-md-9 col" id="heroesLayout">
       <div class="row">
         <div class="col-xl-2 col-lg-5 col-md-5 col-auto heroCard" *ngFor="let hero of filteredHeroes">
           <div class="card" style="width: 18rem;">

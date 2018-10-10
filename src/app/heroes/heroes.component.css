@@ -20,6 +20,11 @@ p.card-text {
     height: 40px;
 }
 
+button#clearHeroFilter {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 card {
     margin: 10px;    
 }
