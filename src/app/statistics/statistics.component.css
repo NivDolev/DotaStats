@@ -37,6 +37,14 @@ span.selected {
     cursor: pointer;
 }
 
+li span.tupleHeroName {
+    margin-left: 15px;
+}
+
+div input.form-control {
+    margin-bottom: 15px;
+}
+
 .d2mh {
     background-image: url("../../assets/images/minimap_hero_sheet.png");
     background-repeat: no-repeat;
