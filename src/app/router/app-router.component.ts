@@ -25,7 +25,9 @@ const routes: Routes = [
         { path: '', component: HeroesComponent }
     ] },
     { path: 'items', component: ItemsComponent },
-    { path: 'statistics', component: StatisticsComponent}
+    { path: 'statistics', component: StatisticsComponent},
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 
