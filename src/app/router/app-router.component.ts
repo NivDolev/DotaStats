@@ -12,6 +12,7 @@ import { PlayersComponent } from '../players/players.component';
 import { ProPlayersComponent } from '../pro-players/pro-players.component';
 import { MatchesComponent } from '../matches/matches.component';
 import { SignupComponent } from '../auth/signup/signup.component';
+import { SigninComponent } from '../auth/signin/signin.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'items', component: ItemsComponent },
     { path: 'statistics', component: StatisticsComponent},
     { path: 'signup', component: SignupComponent },
+    { path: 'signin', component: SigninComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
