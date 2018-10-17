@@ -7,11 +7,13 @@
 
   <div class="collapse navbar-collapse" id="mainNav">
     <ul class="navbar-nav mr-auto">
-      <li *ngFor="let navItem of navigationListItems" class="nav-item" 
-      [class.active]="selectedNav == navItem.text"
-      (click)="onSelectedNav(navItem.text)">
+      <li *ngFor="let navItem of navigationListItems" class="nav-item">
         <a routerLink="{{ navItem.route }}" class="nav-link">{{ navItem.text }}</a>
       </li>
+    </ul>
+    <ul class="navbar-nav float-md-right">
+      <li class="nav-item float-md-right"><a routerLink="signup" class="nav-link">Sign Up</a></li>
+      <li class="nav-item float-md-right"><a routerLink="signin" class="nav-link">Sign In</a></li>
     </ul>
   </div>
 </nav>
