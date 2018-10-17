@@ -11,7 +11,8 @@ export class NavigationComponent implements OnInit {
     {route: 'home', text: 'Home'},
     {route: 'teams', text: 'Teams'},
     {route: 'heroes', text: 'Heroes'},
-    {route: 'statistics', text: 'Statistics'}
+    {route: 'statistics', text: 'Statistics'},
+    {route: 'signup', text: 'Signup'}
   ];
   // navigationListItems = [
   //   {route: 'home', text: 'Home'},

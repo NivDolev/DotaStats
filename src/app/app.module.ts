@@ -24,6 +24,9 @@ import { ReplaceWhiteSpace } from './custome-pipes/replace.pipe';
 import { ContainsFilter } from './custome-pipes/contains.pipe';
 import { HeroDetailsComponent } from './heroes/hero-details/hero-details.component';
 import { HeroNamePipe } from './custome-pipes/hero-name.pipe';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { HeroNamePipe } from './custome-pipes/hero-name.pipe';
     ReplaceWhiteSpace,
     ContainsFilter,
     HeroDetailsComponent,
-    HeroNamePipe
+    HeroNamePipe,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,7 @@ import { HeroNamePipe } from './custome-pipes/hero-name.pipe';
     MatButtonModule,
     MatCheckboxModule
   ],
-  providers: [DataService],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
