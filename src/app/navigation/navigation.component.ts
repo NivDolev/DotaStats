@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
+
 export class NavigationComponent implements OnInit {
   selectedNav = 'home';
   navigationListItems = [
@@ -24,12 +26,17 @@ export class NavigationComponent implements OnInit {
   //   {route: 'items', text: 'Items'},
   //   {route: 'statistics', text: 'Statistics'}
   // ];
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getToken();
   }
 
   onSelectedNav(selectedNavItem: string) {
     this.selectedNav = selectedNavItem;
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }
