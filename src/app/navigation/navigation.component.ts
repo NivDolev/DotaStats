@@ -8,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class NavigationComponent implements OnInit {
+  isAuth = false;
   selectedNav = 'home';
   navigationListItems = [
-    {route: 'home', text: 'Home'},
-    {route: 'teams', text: 'Teams'},
-    {route: 'heroes', text: 'Heroes'},
-    {route: 'statistics', text: 'Statistics'},
+    { route: 'home', text: 'Home' },
+    { route: 'teams', text: 'Teams' },
+    { route: 'heroes', text: 'Heroes' },
+    { route: 'statistics', text: 'Statistics' },
   ];
   // navigationListItems = [
   //   {route: 'home', text: 'Home'},
@@ -29,8 +30,8 @@ export class NavigationComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getToken();
-  }
+      this.authService.tokenChange.subscribe((value) => this.isAuth = value);
+    }
 
   onSelectedNav(selectedNavItem: string) {
     this.selectedNav = selectedNavItem;

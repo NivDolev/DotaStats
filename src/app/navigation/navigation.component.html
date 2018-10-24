@@ -12,11 +12,11 @@
       </li>
     </ul>
     <ul class="navbar-nav float-md-right">
-      <ng-template [ngIf]="!authService.isAuthenticated()">
+      <ng-template [ngIf]="!isAuth">
         <li class="nav-item float-md-right"><a routerLink="signup" class="nav-link">Sign Up</a></li>
         <li class="nav-item float-md-right"><a routerLink="signin" class="nav-link">Sign In</a></li>
       </ng-template>
-      <li class="nav-item float-md-right" *ngIf="authService.isAuthenticated()">
+      <li class="nav-item float-md-right" *ngIf="isAuth">
         <a style="cursor: pointer" (click)="onLogout()" class="nav-link">Logout</a>
       </li>
     </ul>
